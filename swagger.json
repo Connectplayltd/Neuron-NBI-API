@@ -1,0 +1,267 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "Neuron NBI API",
+    "url" : "https://acs.neuron.nz/V1/api"
+  }, {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/Connectpla/NeuronNBI-PUB/1.0.0"
+  } ],
+  "info" : {
+    "description" : "NEURON NBI API Interface, used to make calls into Neuron from a backend system to retrieve or set TR-069 parameters.",
+    "version" : "1.0.0",
+    "title" : "NEURON NBI API",
+    "contact" : {
+      "email" : "devops@neuron.nz"
+    }
+  },
+  "paths" : {
+    "/groups/{GroupID}/authenticate" : {
+      "post" : {
+        "summary" : "Authenticate to request resources from Neuron NBI.",
+        "operationId" : "JWT Login",
+        "description" : "To Request resources from neuron NBI interface, the request must first authenticate to gain access to the protected resources.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "{'Token': '89723440342070319369'}"
+          },
+          "401" : {
+            "description" : "Cannot verify your user credentials, please check and try again."
+          }
+        },
+        "requestBody" : {
+          "description" : "JSON payload e.g. { \"username\": \"d290f1ee-6c54-4b01-90e6\", \"password\": \"d290f1ee-6c54-4b01-90e6\" }",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Login"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{groupID}" : {
+      "get" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Retrieve owners group info.",
+        "operationId" : "Get Group Info",
+        "description" : "Retrieve all information stored in Neuron about an owneres group.\n",
+        "parameters" : [ {
+          "name" : "groupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "500" : {
+            "description" : " Error "
+          },
+          "204" : {
+            "description" : " Error "
+          }
+        }
+      }
+    },
+    "/groups/{groupID}/cpes" : {
+      "get" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Retrieve owners CPES .",
+        "operationId" : "Get Group CPES",
+        "description" : "Retrieve all CPE's stored in Neuron for an owners group.\n",
+        "parameters" : [ {
+          "name" : "groupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Create a new CPE.",
+        "operationId" : "Get Group Info",
+        "description" : "Create a new CPE for the group.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CPECreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{groupID}/cpes/search" : {
+      "get" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Search for a CPE device",
+        "operationId" : "Search for CPE",
+        "description" : "Search for a CPE device based on the serial or by the owner associated with the CPE. Note: Can only specify a serial or the ownerid (customer id)\n",
+        "parameters" : [ {
+          "name" : "groupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "serial",
+          "in" : "query",
+          "description" : "Partial or the serial to search for e.g .../search?serial=<CPE Serial>",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "owner",
+          "in" : "query",
+          "description" : "Partial or the serial to search for e.g .../search?owner=<CustomerID>",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes" : {
+      "JWTAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      }
+    },
+    "schemas" : {
+      "CPECreate" : {
+        "type" : "object",
+        "required" : [ "Description", "Serial", "ProductClass", "OUI", "Manufacturer", "Verified", "Group", "Parameters", "Time", "Created" ],
+        "properties" : {
+          "Description" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "Description - ClientID"
+          },
+          "Serial" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "123456789ABC"
+          },
+          "ProductClass" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "WiFi-Router"
+          },
+          "OUI" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "UOI90"
+          },
+          "Manufacturer" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "SuperWifi"
+          },
+          "Verified" : {
+            "type" : "boolean",
+            "format" : "boolean",
+            "example" : false
+          },
+          "Group" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "23238090hjo0"
+          },
+          "Parameters" : {
+            "type" : "object",
+            "format" : "string",
+            "example" : [ {
+              "name" : "InternetGatewayDevice.DeviceInfo.ProvisioningCode",
+              "type" : "string",
+              "value" : "it-man"
+            } ]
+          },
+          "Time" : {
+            "type" : "integer",
+            "format" : "int64",
+            "example" : 1536299787
+          },
+          "Created" : {
+            "type" : "integer",
+            "format" : "int64",
+            "example" : 1536299787
+          }
+        }
+      },
+      "Login" : {
+        "type" : "object",
+        "required" : [ "username", "password" ],
+        "properties" : {
+          "username" : {
+            "type" : "string",
+            "format" : "string",
+            "example" : "d290f1ee-6c54-4b01-90e6"
+          },
+          "password" : {
+            "type" : "string",
+            "example" : "d290f1ee-6c54-4b01-90e6"
+          }
+        }
+      }
+    }
+  }
+}
