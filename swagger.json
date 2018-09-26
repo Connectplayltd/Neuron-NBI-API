@@ -100,6 +100,12 @@
         "responses" : {
           "200" : {
             "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
           }
         }
       }
@@ -124,6 +130,12 @@
         "responses" : {
           "200" : {
             "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
           }
         },
         "requestBody" : {
@@ -173,6 +185,352 @@
         "responses" : {
           "200" : {
             "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        }
+      }
+    },
+    "/groups/{groupID}/cpes/{serial}" : {
+      "get" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Retrieve a CPE",
+        "operationId" : "Get a CPE based on the serial number of the CPE.",
+        "description" : "Lookup and retrieve a CPE based on the CPE serail number.\n",
+        "parameters" : [ {
+          "name" : "groupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "serial",
+          "in" : "path",
+          "description" : "CPE serial to retrieve.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/SetParameterValues" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Create SPV RPC Request.",
+        "operationId" : "SPV Request",
+        "description" : "Create a Set parameter value (SPV) request to be requested from the CPE.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetParameterValues"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/GetParameterValues" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Create GPV RPC Request.",
+        "operationId" : "GPV Request",
+        "description" : "Create a Get parameter value (SPV) RPC request to be requested from the CPE.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/GetParameterValues"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/Reboot" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Reboot a CPE.",
+        "operationId" : "Reboot a CPE",
+        "description" : "Create a Get parameter value (SPV) RPC request to be requested from the CPE.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/Reset" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Reset a CPE.",
+        "operationId" : "Reset a CPE",
+        "description" : "Create a Get parameter value (SPV) RPC request to be requested from the CPE.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/AddObject" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Add Object.",
+        "operationId" : "Add Object",
+        "description" : "Add a object instance to the CPE data model, Note: parameterkey is a random string or int\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AddObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/DeleteObject" : {
+      "post" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Delete Object.",
+        "operationId" : "Delete Object",
+        "description" : "Delete a object instance in the CPE data model.\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DeleteObject"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/{GroupID}/cpes/{Serial}/ConnectionRequestInfo" : {
+      "get" : {
+        "security" : [ {
+          "JWTAuth" : [ ]
+        } ],
+        "summary" : "Connection Request Info",
+        "operationId" : "Connection Request Info",
+        "description" : "Retrieve Connection Request Information so the external application can send a ConnectionRequest RPC request, (Connection Requet RPC not handled by Neuron)\n",
+        "parameters" : [ {
+          "name" : "GroupID",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Serial",
+          "in" : "path",
+          "description" : "Group id found in Neuron under group info.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation"
+          },
+          "204" : {
+            "description" : "Error"
+          },
+          "500" : {
+            "description" : "Error"
           }
         }
       }
@@ -187,9 +545,62 @@
       }
     },
     "schemas" : {
+      "DeleteObject" : {
+        "type" : "object",
+        "required" : [ "Parameters" ],
+        "properties" : {
+          "Parameters" : {
+            "type" : "object",
+            "format" : "string",
+            "example" : [ {
+              "name" : "InternetGatewayDevice.LANDevice.2."
+            } ]
+          }
+        }
+      },
+      "AddObject" : {
+        "type" : "object",
+        "required" : [ "Parameters" ],
+        "properties" : {
+          "Parameters" : {
+            "type" : "object",
+            "format" : "string",
+            "example" : [ {
+              "name" : "InternetGatewayDevice.LANDevice."
+            } ]
+          }
+        }
+      },
+      "GetParameterValues" : {
+        "type" : "object",
+        "required" : [ "Parameters" ],
+        "properties" : {
+          "Parameters" : {
+            "type" : "object",
+            "format" : "string",
+            "example" : [ {
+              "name" : "InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID"
+            } ]
+          }
+        }
+      },
+      "SetParameterValues" : {
+        "type" : "object",
+        "required" : [ "Parameters" ],
+        "properties" : {
+          "Parameters" : {
+            "type" : "object",
+            "format" : "string",
+            "example" : [ {
+              "name" : "InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID",
+              "value" : "it-man"
+            } ]
+          }
+        }
+      },
       "CPECreate" : {
         "type" : "object",
-        "required" : [ "Description", "Serial", "ProductClass", "OUI", "Manufacturer", "Verified", "Group", "Parameters", "Time", "Created" ],
+        "required" : [ "Description", "Serial", "ProductClass", "OUI", "Manufacturer", "Verified", "Group", "Time", "Created" ],
         "properties" : {
           "Description" : {
             "type" : "string",
@@ -225,15 +636,6 @@
             "type" : "string",
             "format" : "string",
             "example" : "23238090hjo0"
-          },
-          "Parameters" : {
-            "type" : "object",
-            "format" : "string",
-            "example" : [ {
-              "name" : "InternetGatewayDevice.DeviceInfo.ProvisioningCode",
-              "type" : "string",
-              "value" : "it-man"
-            } ]
           },
           "Time" : {
             "type" : "integer",
