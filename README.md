@@ -12,9 +12,9 @@ An OpenAPI definition can then be used by documentation generation tools to disp
 
 ## Quick start
 
-<https://app.swaggerhub.com/apis/Connectpla/NeuronNBI-PUB/1.0.0> , the API is already documented and hosted Swagger Hub.
+<https://app.swaggerhub.com/apis/Connectpla/NeuronNBI-PUB/1.0.0> , the API is already documented and hosted by Swagger Hub.
 
-You can start testing towards the Neuron platform hosted @ neuron.nz or acs.neuron.nz given you have the correct credentials to authenticate.
+You can start testing towards the Neuron API hosted @ neuron.nz or acs.neuron.nz given you have the correct credentials to authenticate.
 
 ## Getting started with Swagger Hub
 
