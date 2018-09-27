@@ -116,7 +116,7 @@
           "JWTAuth" : [ ]
         } ],
         "summary" : "Create a new CPE.",
-        "operationId" : "Get Group Info",
+        "operationId" : "Create new CPE",
         "description" : "Create a new CPE for the group.\n",
         "parameters" : [ {
           "name" : "GroupID",
@@ -410,7 +410,7 @@
         } ],
         "summary" : "Add Object.",
         "operationId" : "Add Object",
-        "description" : "Add a object instance to the CPE data model, Note: parameterkey is a random string or int\n",
+        "description" : "Add a object instance to the CPE data model\n",
         "parameters" : [ {
           "name" : "GroupID",
           "in" : "path",
