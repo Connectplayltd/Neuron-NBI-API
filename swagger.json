@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "servers" : [ {
     "description" : "Neuron NBI API",
-    "url" : "https://acs.neuron.nz/V1/api"
+    "url" : "http://acs.neuron.nz/V1/api"
   }, {
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/Connectpla/NeuronNBI-PUB/1.0.0"
